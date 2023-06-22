@@ -41,10 +41,11 @@ export default function Home() {
   return (
     <main >
       <h1 className='text-3xl text-center md:my-12 font-bold'>Welcome to Meme maker</h1>
+      
       <div className='flex flex-col md:flex-row justify-around container mx-auto '>
 
         <div className='mx-5'>
-          {isLoding ? null : <ImageMeme
+          {isLoding ? <h1>Loading......</h1>: <ImageMeme
             setFontSize={setFontSize}
             textShadow={textShadow}
             fontSize={fontSize}

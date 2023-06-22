@@ -110,7 +110,7 @@ function FormInput({
         <div className="flex justify-between py-4">
           <input
             type="checkbox"
-            onChange={(e) => setTextShadow(e.target.value)}
+            onChange={(e) => setTextShadow(e.target.checked)}
             checked={textShadow}
           />
           <label>Text Shadow</label>

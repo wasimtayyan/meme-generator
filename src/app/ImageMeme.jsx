@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Draggable from "react-draggable";
 
-
 function ImageMeme({
   imageUrl,
   topText,
@@ -20,42 +19,58 @@ function ImageMeme({
   let data = imageUrl[count];
   return (
     <div className="">
-      {/* <div
-        className=""
-        style={{
-          backgroundImage: `url(${data?.url})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          height: data?.height,
-          width: data?.width,
-          position: "relative",
-        }}
-      >
-        <p style={{}}>top</p>
-        <p style={{ position: "absolute", top: data?.height - 100 }}>
-          dfjlsdfjsldfhjsldhjf;sodjhfsk;djfh
+      {topText ? (
+        <p className="text-lg font-bold text-lime-950">
+          you can drage and drop the text wherever you want!!
         </p>
-      </div> */}
-
-      <img
-        style={{ position: "relative" }}
-        height={500}
-        width={500}
-        src={data?.url}
-        alt="MEME"
-      />
-      <p style={{ position: "absolute", top: "10%" }}
-      className={`text-[${textColor.top}]`}
-      >{topText}</p>
-      <p style={{ position: "absolute", top: "70%" }}
-      className={`text-[${textColor.bottom}]`}
-      >{bottomText}</p>
-      <button
-        className="bg-teal-900 rounded-lg py-3 px-6 text-white text-lg my-5"
-        onClick={handleClike}
-      >
-        NEXT
-      </button>
+      ) : null}
+      <div style={{ position: "relative", display: "inline-block" }}>
+        <img
+          style={{ position: "relative" }}
+          height={500}
+          width={500}
+          src={data?.url}
+          alt="MEME"
+        />
+        <Draggable>
+          <p
+            style={{
+              position: "absolute",
+              top: "10%",
+              right: "30%",
+              color: textColor.top,
+              textShadow: textShadow ? "2px 2px 4px black" : "none",
+              fontSize: `${fontSize}px`,
+            }}
+            className={`font-medium ${font}`}
+          >
+            {topText}
+          </p>
+        </Draggable>
+        <Draggable>
+          <p
+            style={{
+              position: "absolute",
+              top: "70%",
+              right: "30%",
+              color: textColor.bottom,
+              textShadow: textShadow ? "2px 2px 4px black" : "none",
+              fontSize: `${fontSize}px`,
+            }}
+            className={`font-medium ${font}`}
+          >
+            {bottomText}
+          </p>
+        </Draggable>
+      </div>
+      <div>
+        <button
+          className="bg-teal-900 rounded-lg py-3 px-6 text-white text-lg my-5"
+          onClick={handleClike}
+        >
+          NEXT
+        </button>
+      </div>
     </div>
   );
 }
