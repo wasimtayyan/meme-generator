@@ -14,6 +14,9 @@ export default function Home() {
     top: '000000',
     bottom: '000000'
   })
+  const [font, setFont] = useState('font-sans')
+  const [fontSize, setFontSize] = useState('20')
+  const [textShadow, setTextShadow] = useState(false)
 
 
   useEffect(() => {
@@ -36,22 +39,37 @@ export default function Home() {
 
 
   return (
-    <main className='flex justify-between'>
-      <div className='mx-5'>
-        {isLoding ? null : <ImageMeme
-          textColor={textColor}
-          topText={topText}
-          bottomText={bottomText}
-          imageUrl={imageUrl} />}
-      </div>
-      <div className='mx-5'>
-        <FormInput
-          setTextColor={setTextColor}
-          setBottomText={setBottomText}
-          setTopText={setTopText}
-          topText={topText}
-          bottomText={bottomText}
-        />
+    <main >
+      <h1 className='text-3xl text-center md:my-12 font-bold'>Welcome to Meme maker</h1>
+      <div className='flex flex-col md:flex-row justify-around container mx-auto '>
+
+        <div className='mx-5'>
+          {isLoding ? null : <ImageMeme
+            setFontSize={setFontSize}
+            textShadow={textShadow}
+            fontSize={fontSize}
+            font={font}
+            textColor={textColor}
+            topText={topText}
+            bottomText={bottomText}
+            imageUrl={imageUrl} />}
+        </div>
+        <div className='mx-5'>
+          <FormInput
+            font={font}
+            fontSize={fontSize}
+            textColor={textColor}
+            textShadow={textShadow}
+            setTextShadow={setTextShadow}
+            setFontSize={setFontSize}
+            setFont={setFont}
+            setTextColor={setTextColor}
+            setBottomText={setBottomText}
+            setTopText={setTopText}
+            topText={topText}
+            bottomText={bottomText}
+          />
+        </div>
       </div>
 
     </main>

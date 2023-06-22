@@ -3,16 +3,25 @@ import React, { useState } from "react";
 function FormInput({
   topText,
   bottomText,
+  textColor,
   setBottomText,
   setTopText,
   setTextColor,
+  setFont,
+  setFontSize,
+  setTextShadow,
+  textShadow,
+  fontSize,
+  font,
 }) {
+  const [upperCase, setUpperCase] = useState(false);
   const handleAllCaps = (e) => {
     if (e.target.checked) {
-      
+      setUpperCase(true);
       setBottomText(bottomText.toUpperCase());
       setTopText(topText.toUpperCase());
-    } else if (e.target.checked) {
+    } else if (!e.target.checked) {
+      setUpperCase(false);
       setBottomText(bottomText.toLowerCase());
       setTopText(topText.toLowerCase());
     }
@@ -30,6 +39,14 @@ function FormInput({
     e.preventDefault();
     setBottomText("");
     setTopText("");
+    setTextColor({
+      top: "000000",
+      bottom: "000000",
+    });
+    setTextShadow(false);
+    setUpperCase(false);
+    setFontSize("20");
+    setFont("font-sans");
   }
   return (
     <div>
@@ -48,9 +65,10 @@ function FormInput({
         />
 
         <select
+          value={font}
           name="fonts"
-          onChange={(e) => console.log(e.target.value)}
-          typeof="nomber"
+          onChange={(e) => setFont(e.target.value)}
+          className="border py-2 px-6 text-black my-3"
         >
           <option className="font-sans" value={"font-sans"}>
             sans
@@ -62,24 +80,52 @@ function FormInput({
             mono
           </option>
         </select>
-        <label>Top text color</label>
-        <input type="color" name="top" onChange={(e) => handleTextColor(e)} />
-        <label>Bottom text color</label>
-        <input
-          type="color"
-          name="bottom"
-          onChange={(e) => handleTextColor(e)}
-        />
-        <div className="flex">
+        <div className="flex gap-3 justify-between py-3  text-black my-3">
+          <label className="font-medium">Top text color</label>
+          <input
+            value={textColor.top}
+            type="color"
+            name="top"
+            onChange={(e) => handleTextColor(e)}
+          />
+        </div>
+
+        <div className="flex gap-3 justify-between">
+          <label className="font-medium">Bottom text color</label>
+          <input
+            value={textColor.bottom}
+            type="color"
+            name="bottom"
+            onChange={(e) => handleTextColor(e)}
+          />
+        </div>
+        <div className="flex justify-between py-4">
           <input
             type="checkbox"
             onChange={(e) => handleAllCaps(e)}
-            // value={allCaps}
+            checked={upperCase}
           />
           <label>All caps</label>
         </div>
-        <input type="" />
-        <button>Resete</button>
+        <div className="flex justify-between py-4">
+          <input
+            type="checkbox"
+            onChange={(e) => setTextShadow(e.target.value)}
+            checked={textShadow}
+          />
+          <label>Text Shadow</label>
+        </div>
+        <label>Font-Size:</label>
+        <input
+          value={fontSize}
+          className="border py-3 px-6 text-black my-3"
+          type="text"
+          placeholder="Font-Size"
+          onChange={(e) => setFontSize(e.target.value)}
+        />
+        <button className="bg-teal-900 rounded-lg py-3 px-6 text-white text-lg my-5">
+          Resete
+        </button>
       </form>
     </div>
   );
